@@ -1,0 +1,12 @@
+development:
+  sessions:
+    default:
+      database: short_url_dev
+      hosts:
+        - 10.211.55.8:27017
+test:
+  sessions:
+    default:
+      database: short_url_test
+      hosts:
+        - 10.211.55.8:27017
