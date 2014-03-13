@@ -3,6 +3,7 @@ require "./config/env"
 
 class ShortUrl
   BASE_URL = "http://s.4ye.me/"
+  SHORT_URL_REGEX = Regexp.new(%Q{^#{BASE_URL.gsub("/", "\\/")}(\\w{6})$})
 
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -21,6 +22,7 @@ class ShortUrl
   }
 
   def self.parse(url)
+    return ShortUrl.find_or_initialize_by(token: $1) if SHORT_URL_REGEX.match(url)
     self.find_or_create_by(long_url: url)
   end
 
