@@ -1,9 +1,14 @@
 require "bundler"
+require "./lib/short_url"
 Bundler.setup(:default)
 require "sinatra"
 require "sinatra/reloader"
 
 class ShortUrlApp < Sinatra::Base
+  configure :development do
+    register Sinatra::Reloader
+  end
+
   set :views, ["templates"]
 
   get "/" do
