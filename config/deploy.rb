@@ -40,9 +40,9 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     queue! "bundle"
-    queue! "bundle exec rake assetpack:build"
 
     to :launch do
+      queue! "bundle exec rake assetpack:build"      
       queue %[
         source /etc/profile
         ./deploy/sh/unicorn.sh stop
@@ -58,7 +58,11 @@ task :update_code => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     queue! "bundle"
-    queue! "bundle exec rake assetpack:build"
+
+    to :launch do
+      queue! "bundle exec rake assetpack:build"      
+    end
+
   end
 end
 
