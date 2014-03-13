@@ -1,0 +1,52 @@
+.page-body{
+  width: 960px;
+  margin: auto;
+}
+
+.page-short-url-form{
+  form{
+    padding-top: 300px;
+
+    .input-short-url{
+      width:800px;
+      height:30px;
+      font-size:18px;
+    }
+
+    .submit-short-url{
+      width:100px;
+      height:38px;
+      font-size:18px;
+    }
+  }
+
+  .result{
+    padding-top:40px;
+
+    .long_url{
+      .name{
+        display:inline;
+        font-size:18px;
+      }
+
+      .value{
+        display:inline;
+        padding-left:30px;
+      }
+    }
+
+    .short_url{
+      padding-top:20px;
+
+      .name{
+        display:inline;
+        font-size:18px;
+      }
+
+      .value{
+        display:inline;
+        padding-left:30px;
+      }
+    }
+  }
+}

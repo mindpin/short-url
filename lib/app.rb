@@ -4,6 +4,9 @@ Bundler.setup(:default)
 require "sinatra"
 require "sinatra/reloader"
 require 'haml'
+require 'sinatra/assetpack'
+require 'sass'
+require 'coffee_script'
 
 class ShortUrlApp < Sinatra::Base
   configure :development do
@@ -11,6 +14,24 @@ class ShortUrlApp < Sinatra::Base
   end
 
   set :views, ["templates"]
+  set :root, File.expand_path("../../", __FILE__)
+  register Sinatra::AssetPack
+
+  assets {
+    serve '/js', :from => 'assets/javascripts'
+    serve '/css', :from => 'assets/stylesheets'
+
+    js :application, "/js/application.js", [
+      '/js/**/*.js'
+    ]
+
+    css :application, "/css/application.css", [
+      '/css/**/*.css'
+    ]
+
+    js_compression :jsmin
+    css_compression :sass
+  }
 
   get "/" do
     haml :index
