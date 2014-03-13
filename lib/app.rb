@@ -3,6 +3,7 @@ require "./lib/short_url"
 Bundler.setup(:default)
 require "sinatra"
 require "sinatra/reloader"
+require 'haml'
 
 class ShortUrlApp < Sinatra::Base
   configure :development do
@@ -16,7 +17,9 @@ class ShortUrlApp < Sinatra::Base
   end
 
   post "/parse" do
-    ShortUrl.parse(params[:long_url]).short_url
+    @long_url = params[:long_url]
+    @short_url = ShortUrl.parse(params[:long_url]).short_url
+    haml :index
   end
 
   get "/:token" do
