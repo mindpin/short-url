@@ -6,6 +6,9 @@ gem "sinatra-contrib"
 gem "pry"
 gem "haml"
 gem "unicorn"
+gem 'sinatra-assetpack'
+gem 'sass'
+gem 'coffee-script'
 
 gem 'mina',
     :git => 'git://github.com/fushang318/mina.git',

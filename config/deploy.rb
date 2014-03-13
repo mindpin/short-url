@@ -40,6 +40,7 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     queue! "bundle"
+    queue! "bundle exec rake assetpack:build"
 
     to :launch do
       queue %[
@@ -56,6 +57,8 @@ task :update_code => :environment do
   deploy do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
+    queue! "bundle"
+    queue! "bundle exec rake assetpack:build"
   end
 end
 

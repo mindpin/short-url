@@ -5,3 +5,6 @@
 .DS_*
 .bundle
 goals/*.xml
+public/**/*.js
+public/**/*.css
+.sass-cache/
