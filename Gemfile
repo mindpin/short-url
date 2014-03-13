@@ -4,6 +4,7 @@ gem "mongoid", "~> 3.1.6"
 gem "sinatra"
 gem "sinatra-contrib"
 gem "pry"
+gem "haml"
 
 group :test do
   gem "rspec"

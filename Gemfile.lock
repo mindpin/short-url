@@ -12,6 +12,8 @@ GEM
     coderay (1.1.0)
     database_cleaner (1.2.0)
     diff-lcs (1.2.5)
+    haml (4.0.5)
+      tilt
     i18n (0.6.9)
     method_source (0.8.2)
     mongoid (3.1.6)
@@ -59,6 +61,7 @@ PLATFORMS
 
 DEPENDENCIES
   database_cleaner (~> 1.2.0)
+  haml
   mongoid (~> 3.1.6)
   pry
   rspec
