@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+. /etc/profile
+
 function assert_process_from_name_not_exist()
 {
   local pid
