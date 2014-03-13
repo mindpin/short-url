@@ -29,8 +29,6 @@ class ShortUrlApp < Sinatra::Base
       '/css/**/*.css'
     ]
 
-    js_compression :closure 
-    css_compression :yui
   }
 
   get "/" do
