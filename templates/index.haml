@@ -6,10 +6,10 @@
   - if @long_url_str.present?
     .result
       - if @short_url_str.present?
-        .long_url
+        .long-url
           .name 原地址
           .value=@long_url_str
-        .short_url
+        .short-url
           .name 短地址
           .value=@short_url_str
       - elsif @error.present?
