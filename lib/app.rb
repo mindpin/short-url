@@ -17,8 +17,13 @@ class ShortUrlApp < Sinatra::Base
   end
 
   post "/parse" do
-    @long_url = params[:long_url]
-    @short_url = ShortUrl.parse(params[:long_url]).short_url
+    @short_url = ShortUrl.parse(params[:long_url])
+    if @short_url.valid?
+      @short_url_str = @short_url.short_url
+    else
+      @error = "输入的不是一个有效的地址"
+    end
+    @long_url_str = params[:long_url]
     haml :index
   end
 
