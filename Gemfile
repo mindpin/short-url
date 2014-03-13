@@ -5,6 +5,7 @@ gem "sinatra"
 gem "sinatra-contrib"
 gem "pry"
 gem "haml"
+gem "unicorn"
 
 gem 'mina',
     :git => 'git://github.com/fushang318/mina.git',
