@@ -3,7 +3,7 @@ require "./config/env"
 
 class ShortUrl
   BASE_URL = "http://s.4ye.me/"
-  SHORT_URL_REGEX = Regexp.new(%Q{^#{BASE_URL.gsub("/", "\\/")}(\\w{6})$})
+  SHORT_URL_REGEX = Regexp.new(%Q{^#{BASE_URL.gsub("/", "\\/")}(\\w*)$})
 
   include Mongoid::Document
   include Mongoid::Timestamps

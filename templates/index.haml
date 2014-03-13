@@ -1,3 +1,15 @@
 %form{ :action => "/parse", :method => "post", :style => "padding-top:300px;"}
   %input{:type => "text", :name => "long_url", :placeholder => "  输入要缩短的地址", :style => "width:800px;height:30px;font-size:18px;"}
   %input{:type => "submit", :value => "缩短地址", :style => "width:100px;height:38px;font-size:18px;"}
+
+- if @long_url_str.present?
+  #result{:style => "padding-top:40px;"}
+    - if @short_url_str.present?
+      #long_url
+        .name{:style=>"display:inline;font-size:18px;"} 原地址
+        .value{:style=>"padding-left:30px;display:inline;"}=@long_url_str
+      #short_url{:style => "padding-top:20px;"}
+        .name{:style=>"display:inline;font-size:18px;"} 短地址
+        .value{:style=>"padding-left:30px;display:inline;"}=@short_url_str
+    - elsif @error.present?
+      .error=@error
