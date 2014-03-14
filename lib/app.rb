@@ -17,21 +17,19 @@ class ShortUrlApp < Sinatra::Base
   set :root, File.expand_path("../../", __FILE__)
   register Sinatra::AssetPack
 
-  assets {
-    serve '/js', :from => 'assets/javascripts'
-    serve '/css', :from => 'assets/stylesheets'
+  # assets {
+  #   serve '/js', :from => 'assets/javascripts'
+  #   serve '/css', :from => 'assets/stylesheets'
 
-    js :application, "/js/application.js", [
-      '/js/**/*.js'
-    ]
+  #   js :application, "/js/application.js", [
+  #     '/js/**/*.js'
+  #   ]
 
-    css :application, "/css/application.css", [
-      '/css/**/*.css'
-    ]
+  #   css :application, "/css/application.css", [
+  #     '/css/**/*.css'
+  #   ]
 
-    js_compression :jsmin
-    css_compression :sass
-  }
+  # }
 
   get "/" do
     haml :index

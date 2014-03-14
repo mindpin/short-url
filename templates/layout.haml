@@ -2,7 +2,6 @@
 %html
   %head
     %title ShortUrl
-    = css :application
+    %link{:rel => "stylesheet", :href => "/css/custom.css"}
   %body
-    .page-body= yield
-    =js :application
+    = yield
