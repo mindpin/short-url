@@ -8,6 +8,7 @@ require 'sinatra/assetpack'
 require 'sass'
 require 'coffee_script'
 require 'yui/compressor'
+require 'sinatra/json'
 
 class ShortUrlApp < Sinatra::Base
   configure :development do
@@ -23,6 +24,7 @@ class ShortUrlApp < Sinatra::Base
     serve '/css', :from => 'assets/stylesheets'
 
     js :application, "/js/application.js", [
+      '/js/jquery-1.11.0.min.js',
       '/js/**/*.js'
     ]
 
@@ -31,6 +33,7 @@ class ShortUrlApp < Sinatra::Base
     ]
 
     css_compression :yui
+    js_compression  :uglify
   }
 
   get "/" do
@@ -40,12 +43,11 @@ class ShortUrlApp < Sinatra::Base
   post "/parse" do
     @short_url = ShortUrl.parse(params[:long_url])
     if @short_url.valid?
-      @short_url_str = @short_url.short_url
+      json :short_url => @short_url.short_url, :long_url => @short_url.long_url
     else
-      @error = "输入的不是一个有效的地址"
+      status 500
+      json :error => "输入的不是一个有效的地址"
     end
-    @long_url_str = params[:long_url]
-    haml :index
   end
 
   get "/:token" do

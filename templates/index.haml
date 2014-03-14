@@ -1,16 +1,13 @@
 .page-short-url-form
-  %form{ :action => "/parse", :method => "post"}
-    %input{:class => "input-short-url", :type => "text", :name => "long_url", :placeholder => "  输入要缩短的地址"}
-    %input{:class => "submit-short-url", :type => "submit", :value => "缩短地址"}
+  .form
+    %input{:class => "input-short-url", :type => "text", :placeholder => "  输入要缩短的地址"}
+    %button{:class => "submit-short-url"} 缩短地址
 
-  - if @long_url_str.present?
-    .result
-      - if @short_url_str.present?
-        .long-url
-          .name 原地址
-          .value=@long_url_str
-        .short-url
-          .name 短地址
-          .value=@short_url_str
-      - elsif @error.present?
-        .error=@error
+    .result.hide
+      .short-url.hide
+        .name 短地址
+        %input{:class => "input-short-url", :type => "text"}
+      .long-url.hide
+        .name 长地址
+        %input{:class => "input-long-url", :type => "text"}
+      .error.hide
