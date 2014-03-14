@@ -6,3 +6,5 @@
 .bundle
 goals/*.xml
 .sass-cache/
+public/js/*
+public/css/*
