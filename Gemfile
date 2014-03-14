@@ -9,6 +9,7 @@ gem "unicorn"
 gem 'sinatra-assetpack'
 gem 'sass'
 gem 'coffee-script'
+gem 'yui-compressor'
 
 gem 'mina',
     :git => 'git://github.com/fushang318/mina.git',
