@@ -30,6 +30,7 @@ GEM
       tilt
     i18n (0.6.9)
     jsmin (1.0.1)
+    json (1.8.1)
     kgio (2.8.0)
     method_source (0.8.2)
     mongoid (3.1.6)
@@ -80,6 +81,9 @@ GEM
     slop (3.4.7)
     tilt (1.4.1)
     tzinfo (0.3.39)
+    uglifier (2.4.0)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
     unicorn (4.6.2)
       kgio (~> 2.6)
       rack
@@ -101,5 +105,6 @@ DEPENDENCIES
   sinatra
   sinatra-assetpack
   sinatra-contrib
+  uglifier
   unicorn
   yui-compressor
