@@ -11,6 +11,8 @@ gem 'sass'
 gem 'coffee-script'
 gem 'yui-compressor'
 gem 'uglifier'
+gem "rqrcode_png"
+gem "oily_png" 
 
 gem 'mina',
     :git => 'git://github.com/fushang318/mina.git',

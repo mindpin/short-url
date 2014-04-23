@@ -31,14 +31,25 @@ body{
         font-size:24px;
       }
 
-      .short-url{
+      .name{
+        display:inline;
+        font-size:24px;
+        margin-right: 20px;
+      }
 
-        .name{
-          display:inline;
+      .qrcode {
+        padding-top: 20px;
+
+        .img-qrcode {
+          margin: 0;
+          padding: 0;
+          width:120px;
+          height:120px;
           font-size:24px;
-          margin-right: 20px;
         }
+      }
 
+      .short-url{
         .input-short-url{
           margin: 0;
           padding: 0;
@@ -51,12 +62,6 @@ body{
       .long-url{
         padding-top: 20px;
 
-        .name{
-          display:inline;
-          font-size:24px;
-          margin-right: 20px;
-        }
-
         .input-long-url{
           margin: 0;
           padding: 0;
@@ -67,6 +72,5 @@ body{
       }
     }
   }
-
 }
 
