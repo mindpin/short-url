@@ -21,6 +21,8 @@ class ShortUrl
     with: URI::regexp(%w(http https))
   }
 
+  before_save :qrcode!
+
   def self.parse(url)
     return ShortUrl.find_or_initialize_by(token: $1) if SHORT_URL_REGEX.match(url)
     self.find_or_create_by(long_url: url)
@@ -43,7 +45,22 @@ class ShortUrl
     "#{BASE_URL}#{self.token}"
   end
 
+  def qrcode
+    qrcode! if !File.exists?("#{qr_store}/#{self.token}.png")
+    "/qr_store/#{self.token}.png"
+  end
+
   private
+
+  def qr_store
+    "#{ShortUrlApp.settings.public_folder}/qr_store"
+  end
+
+  def qrcode!
+    img = RQRCode::QRCode.new(short_url, :size => 4, :level => :h).to_img
+    FileUtils.mkdir_p(qr_store) if !File.exists?(qr_store)
+    img.resize(120, 120).save("#{qr_store}/#{self.token}.png")
+  end
 
   def randstr(length=6)
     base = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'

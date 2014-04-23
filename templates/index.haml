@@ -10,4 +10,8 @@
       .long-url.hide
         .name 长地址
         %input{:class => "input-long-url", :type => "text"}
+      .qrcode.hide
+        .name 二维码
+        %a.link-download{:href => "", :download => true}
+          %img{:class => "img-qrcode", :src => ""}
       .error.hide

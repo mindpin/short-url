@@ -25,11 +25,14 @@ jQuery ->
           $short_url_dom.val(short_url)
           $long_url_dom = jQuery(".page-short-url-form .result .input-long-url")
           $long_url_dom.val(long_url)
+          jQuery(".page-short-url-form .link-download").attr("href", res.qrcode)
+          jQuery(".page-short-url-form .img-qrcode").attr("src", res.qrcode)
 
           jQuery(".page-short-url-form .result").removeClass("hide")
           jQuery(".page-short-url-form .result .error").addClass("hide")
           jQuery(".page-short-url-form .result .short-url").removeClass("hide")
           jQuery(".page-short-url-form .result .long-url").removeClass("hide")
+          jQuery(".page-short-url-form .result .qrcode").removeClass("hide")
         500: (ajax)->
           error = ajax.responseJSON.error
           jQuery(".page-short-url-form .result .error").html(error)
