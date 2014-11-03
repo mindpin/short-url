@@ -54,6 +54,6 @@ class ShortUrlApp < Sinatra::Base
   get "/:token" do
     su = ShortUrl.parse("#{ShortUrl::BASE_URL}#{params[:token]}")
     return 404 if su.long_url.nil? 
-    redirect to(su.long_url)
+    redirect to(su.long_url), 301
   end
 end
