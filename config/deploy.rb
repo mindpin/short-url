@@ -11,7 +11,8 @@ set :user, 'root'
 
 set :shared_paths, [
   'config/mongoid.yml',
-  'tmp'
+  'tmp',
+  'public'
 ]
 
 task :environment do
