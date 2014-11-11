@@ -44,6 +44,10 @@ class ShortUrl
     "#{BASE_URL}#{self.token}"
   end
 
+  def qrcode_url
+    File.join(R::IMAGE_ENDPOINT, self.file.path)
+  end
+
   after_create :qrcode
 
   private

@@ -56,7 +56,7 @@ class ShortUrlApp < Sinatra::Base
   post "/parse" do
     @short_url = ShortUrl.parse(params[:long_url])
     if @short_url.valid?
-      json :short_url => @short_url.short_url, :long_url => @short_url.long_url, :qrcode => @short_url.file.url
+      json :short_url => @short_url.short_url, :long_url => @short_url.long_url, :qrcode => @short_url.qrcode_url
     else
       status 500
       json :error => "输入的不是一个有效的地址"

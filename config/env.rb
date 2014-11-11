@@ -4,6 +4,7 @@ ENV_YAML_HASH = YAML.load_file(File.expand_path("../env.yml",__FILE__))
 
 class R
   ALIYUN_BASE_DIR = ENV_YAML_HASH['ALIYUN_BASE_DIR']
+  IMAGE_ENDPOINT  = ENV_YAML_HASH['IMAGE_ENDPOINT']
 end
 
 CarrierWave.configure do |config|
