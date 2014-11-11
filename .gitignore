@@ -9,4 +9,5 @@ goals/*.xml
 public/js/*
 public/css/*
 config/mongoid.yml
+config/env.yml
 public/qr_store/*

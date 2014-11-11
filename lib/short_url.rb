@@ -1,6 +1,3 @@
-require "uri"
-require "./config/env"
-
 class ShortUrl
   BASE_URL = "http://s.4ye.me/"
   SHORT_URL_REGEX = Regexp.new(%Q{^#{BASE_URL.gsub("/", "\\/")}(\\w*)$})
@@ -10,6 +7,8 @@ class ShortUrl
 
   field :long_url, type: String
   field :token,    type: String
+  field :file,     type: String
+  field :qrcode_generated, type: Boolean
 
   validates :token,    uniqueness: true
   validates :long_url, uniqueness: true
@@ -21,7 +20,7 @@ class ShortUrl
     with: URI::regexp(%w(http https))
   }
 
-  before_save :qrcode!
+  mount_uploader :file, ImageUploader
 
   def self.parse(url)
     return ShortUrl.find_or_initialize_by(token: $1) if SHORT_URL_REGEX.match(url)
@@ -45,21 +44,26 @@ class ShortUrl
     "#{BASE_URL}#{self.token}"
   end
 
-  def qrcode
-    qrcode! if !File.exists?("#{qr_store}/#{self.token}.png")
-    "/qr_store/#{self.token}.png"
-  end
+  after_create :qrcode
 
   private
+  def qrcode
+    return if !!self.qrcode_generated
 
-  def qr_store
-    "#{ShortUrlApp.settings.public_folder}/qr_store"
+    qrcode!
   end
 
   def qrcode!
     img = RQRCode::QRCode.new(short_url, :size => 4, :level => :h).to_img
-    FileUtils.mkdir_p(qr_store) if !File.exists?(qr_store)
-    img.resize(120, 120).save("#{qr_store}/#{self.token}.png")
+    File.delete(_qrcode_tmepfile) if File.exists?(_qrcode_tmepfile)
+    img.resize(120, 120).save(_qrcode_tmepfile)
+    self.file = File.new(_qrcode_tmepfile)
+    self.qrcode_generated = true
+    self.save
+  end
+
+  def _qrcode_tmepfile
+    "/tmp/#{self.token}.png"
   end
 
   def randstr(length=6)

@@ -1,7 +1,10 @@
 # coding: utf-8
 require "bundler"
-require "./lib/short_url"
 Bundler.setup(:default)
+require "pry"
+require "mongoid"
+require "rqrcode_png"
+require "oily_png"
 require "sinatra"
 require "sinatra/reloader"
 require 'haml'
@@ -10,6 +13,15 @@ require 'sass'
 require 'coffee_script'
 require 'yui/compressor'
 require 'sinatra/json'
+require "uri"
+
+require 'carrierwave'
+require 'carrierwave/mongoid'
+require 'carrierwave-aliyun'
+
+require File.expand_path("../../config/env",__FILE__)
+require "./lib/image_uploader"
+require "./lib/short_url"
 
 class ShortUrlApp < Sinatra::Base
   configure :development do
@@ -44,7 +56,7 @@ class ShortUrlApp < Sinatra::Base
   post "/parse" do
     @short_url = ShortUrl.parse(params[:long_url])
     if @short_url.valid?
-      json :short_url => @short_url.short_url, :long_url => @short_url.long_url, :qrcode => @short_url.qrcode
+      json :short_url => @short_url.short_url, :long_url => @short_url.long_url, :qrcode => @short_url.file.url
     else
       status 500
       json :error => "输入的不是一个有效的地址"

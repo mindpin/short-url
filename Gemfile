@@ -22,3 +22,9 @@ group :test do
   gem "rspec"
   gem "database_cleaner", "~> 1.2.0"
 end
+
+gem "carrierwave", "0.8.0"
+gem 'carrierwave-mongoid'
+gem 'rest-client'
+gem 'carrierwave-aliyun', :git => 'git://github.com/huacnlee/carrierwave-aliyun.git', :ref => 'e7537c9ae0d9cda211c0a718c94a84c77c7d66af'
+
