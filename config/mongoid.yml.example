@@ -1,0 +1,8 @@
+development:
+  sessions:
+    default:
+      database: short_url_development
+      hosts:
+        - localhost:27017
+      options:
+  options:
