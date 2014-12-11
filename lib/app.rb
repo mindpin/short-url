@@ -37,6 +37,9 @@ class ShortUrlApp < Sinatra::Base
  
   before {
     env["rack.errors"] =  error_logger
+    headers['Access-Control-Allow-Origin']   = '*'
+    headers['Access-Control-Allow-Methods']  = 'POST, PUT, DELETE, GET, OPTIONS'
+    headers['Access-Control-Request-Method'] = '*'
   }
 
   configure :development do
