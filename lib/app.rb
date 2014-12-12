@@ -54,6 +54,7 @@ class ShortUrlApp < Sinatra::Base
     serve '/js', :from => 'assets/javascripts'
     serve '/css', :from => 'assets/stylesheets'
     serve '/plugin_js', :from => 'assets/plugin_javascripts'
+    serve '/plugins', :from => 'assets/plugins'
 
     js :application, "/js/application.js", [
       '/js/jquery-1.11.0.min.js',
