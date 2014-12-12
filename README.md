@@ -22,9 +22,8 @@ rackup
 ```xml
 <html>
 <head>
-    <!-- 增加下面两个 script -->
-    <script src='http://s.4ye.me/js/jquery-1.11.0.min.js'></script>
-    <script src='http://s.4ye.me/plugin_js/qr_png.js'></script>
+    <!-- 增加下面 script -->
+    <script src='http://s.4ye.me/plugins/qr.js'></script>
 </head>
 <body>
   <!-- data-url 属性为需要转换的 url -->
